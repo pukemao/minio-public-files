@@ -90,8 +90,13 @@ mc cp /path/to/file local/<MINIO_PUBLIC_BUCKET>/path/to/file
 
 1. 将公网端口转发到本机 `MINIO_API_PORT`
 2. 放通主机防火墙对应端口
-3. 将 `.env` 中的 `MINIO_SERVER_URL` 改为公网 IP 或域名
-4. 执行 `make restart`
+3. 对外使用时，直接使用你的公网 IP 或域名拼接文件 URL：
+
+```text
+http://<your-public-host>:19000/<bucket>/<path-to-file>
+```
+
+4. 如需调整端口或控制台地址，修改 `.env` 后执行 `make restart`
 
 ## 说明
 

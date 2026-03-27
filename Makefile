@@ -33,10 +33,10 @@ config:
 	@$(COMPOSE) config
 
 public-url:
-	@server_url=$$(awk -F= '/^MINIO_SERVER_URL=/{print $$2}' .env); \
+	@server_url="http://127.0.0.1:$$(awk -F= '/^MINIO_API_PORT=/{print $$2}' .env)"; \
 	bucket=$$(awk -F= '/^MINIO_PUBLIC_BUCKET=/{print $$2}' .env); \
 	printf '%s/%s\n' "$$server_url" "$$bucket"
 
 health:
-	@server_url=$$(awk -F= '/^MINIO_SERVER_URL=/{print $$2}' .env); \
+	@server_url="http://127.0.0.1:$$(awk -F= '/^MINIO_API_PORT=/{print $$2}' .env)"; \
 	curl -fsS "$$server_url/minio/health/live"
